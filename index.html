@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMGN 返佣计划 | 交易即赚</title>
+<style>
+:root {
+    --bg: #0a0a0f;
+    --card: #14141e;
+    --border: #2a2a3e;
+    --green: #00e676;
+    --green-dim: #00c853;
+    --text: #e0e0e8;
+    --text-dim: #8888a0;
+    --yellow: #ffd54f;
+    --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+.hero h1 {
+    font-size: 2.4em;
+    background: linear-gradient(135deg, var(--green), #69f0ae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+}
+.hero p {
+    color: var(--text-dim);
+    font-size: 1.1em;
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+.badge {
+    display: inline-block;
+    background: rgba(0, 230, 118, 0.1);
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin-bottom: 16px;
+}
+
+/* CTA */
+.cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-size: 1.05em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+.btn-primary {
+    background: var(--green);
+    color: #000;
+}
+.btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+.btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--green); }
+
+/* Stats */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin: 40px 0;
+}
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    text-align: center;
+}
+.stat-card .num {
+    font-size: 2em;
+    font-weight: 800;
+    color: var(--green);
+}
+.stat-card .label {
+    color: var(--text-dim);
+    font-size: 0.85em;
+    margin-top: 4px;
+}
+
+/* Calculator */
+.calculator {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 40px 0;
+}
+.calculator h2 {
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+.calc-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.calc-row label { color: var(--text-dim); min-width: 120px; }
+.calc-row input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    outline: none;
+}
+.calc-row input:focus { border-color: var(--green); }
+.calc-row select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 1em;
+}
+.calc-result {
+    margin-top: 24px;
+    padding: 20px;
+    background: rgba(0, 230, 118, 0.05);
+    border: 1px solid rgba(0, 230, 118, 0.2);
+    border-radius: 8px;
+    text-align: center;
+}
+.calc-result .amount {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--green);
+}
+.calc-result .desc {
+    color: var(--text-dim);
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+/* How it works */
+.steps {
+    margin: 40px 0;
+}
+.steps h2 { margin-bottom: 20px; }
+.step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+.step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--green);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+.step-content h3 { font-size: 1.05em; margin-bottom: 4px; }
+.step-content p { color: var(--text-dim); font-size: 0.9em; }
+
+/* FAQ */
+.faq {
+    margin: 40px 0;
+}
+.faq-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+.faq-item summary {
+    font-weight: 600;
+    cursor: pointer;
+}
+.faq-item p {
+    color: var(--text-dim);
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+/* Leaderboard */
+.leaderboard {
+    margin: 40px 0;
+}
+.leaderboard h2 { margin-bottom: 16px; }
+.lb-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.lb-table th, .lb-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+.lb-table th {
+    color: var(--text-dim);
+    font-size: 0.85em;
+    text-transform: uppercase;
+}
+.lb-rank {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.85em;
+    font-weight: 700;
+    background: var(--border);
+}
+.lb-rank.gold { background: var(--yellow); color: #000; }
+.lb-rank.silver { background: #b0bec5; color: #000; }
+.lb-rank.bronze { background: #cd7f32; color: #000; }
+.lb-amount { color: var(--green); font-weight: 600; }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-dim);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+}
+footer a { color: var(--green); text-decoration: none; }
+
+/* Chains */
+.chains {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+.chain-tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    color: var(--text-dim);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 1.8em; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .calculator { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+    <div class="badge">GMGN 官方返佣合作</div>
+    <h1>交易即返佣</h1>
+    <p>通过我的 GMGN 邀请链接注册，你的每笔交易手续费都能获得 <strong style="color:var(--green)">最高 20% 返佣</strong>，每周自动结算。</p>
+    
+    <div class="chains" id="chains"></div>
+    
+    <div class="cta-group">
+        <a href="#" id="ctaJoin" class="btn btn-primary">
+            立即加入
+        </a>
+        <a href="#" id="ctaWeb" class="btn btn-secondary">
+            访问 GMGN
+        </a>
+    </div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+    <div class="stat-card">
+        <div class="num">20%</div>
+        <div class="label">最高返佣比例</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">7天</div>
+        <div class="label">结算周期</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">6</div>
+        <div class="label">支持链数</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">0</div>
+        <div class="label">手续费</div>
+    </div>
+</div>
+
+<!-- Calculator -->
+<div class="calculator">
+    <h2>收益计算器</h2>
+    <div class="calc-row">
+        <label>周交易量 ($)</label>
+        <input type="number" id="calcVolume" value="10000" min="0" step="100">
+    </div>
+    <div class="calc-row">
+        <label>交易费率</label>
+        <select id="calcFee">
+            <option value="0.01">1% (Solana Bot)</option>
+            <option value="0.005">0.5% (DEX 常规)</option>
+            <option value="0.03">3% (Pump.fun)</option>
+        </select>
+    </div>
+    <div class="calc-result" id="calcResult">
+        <div class="amount">$0.00</div>
+        <div class="desc">每周预计返佣</div>
+    </div>
+</div>
+
+<!-- How it works -->
+<div class="steps">
+    <h2>如何参与</h2>
+    <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+            <h3>点击加入按钮</h3>
+            <p>跳转到 GMGN Telegram Bot，自动绑定我的推荐码</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+            <h3>正常交易</h3>
+            <p>使用 GMGN Bot 或网站进行任何链上的交易，推荐码已自动绑定</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+            <h3>联系返佣 Bot</h3>
+            <p>在 Telegram 找到返佣 Bot，提交你的钱包地址完成注册</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+            <h3>每周收钱</h3>
+            <p>每周一自动结算上周返佣，Bot 通知你领取</p>
+        </div>
+    </div>
+</div>
+
+<!-- Leaderboard -->
+<div class="leaderboard">
+    <h2>返佣排行榜</h2>
+    <table class="lb-table">
+        <thead>
+            <tr><th>排名</th><th>用户</th><th>本周返佣</th></tr>
+        </thead>
+        <tbody id="lbBody">
+            <tr><td colspan="3" style="text-align:center;color:var(--text-dim);padding:30px">暂无数据</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+    <h2>常见问题</h2>
+    <details class="faq-item">
+        <summary>返佣从哪里来？</summary>
+        <p>GMGN 平台会从每笔交易手续费中提取一部分作为推荐人佣金（最高 30%）。我将其中大部分返还给你，自己只留少量运营成本。</p>
+    </details>
+    <details class="faq-item">
+        <summary>我怎么确认返佣金额？</summary>
+        <p>每周一 Bot 会发送你的返佣明细（交易笔数、总手续费、返佣金额）。你可以截图与 GMGN 后台数据核对。</p>
+    </details>
+    <details class="faq-item">
+        <summary>返佣用什么币结算？</summary>
+        <p>默认以 SOL 或 USDC/USDT 结算，具体在 Bot 中选择。</p>
+    </details>
+    <details class="faq-item">
+        <summary>如果我还没有 GMGN 账号？</summary>
+        <p>点击"立即加入"按钮，通过我的推荐链接注册即可。注册后你的交易自动绑定返佣。</p>
+    </details>
+    <details class="faq-item">
+        <summary>返佣有最低门槛吗？</summary>
+        <p>每周返佣满 $1 即可领取，不满 $1 累积到下周。</p>
+    </details>
+</div>
+
+<footer>
+    <p>本站非 GMGN 官方，仅为个人返佣服务</p>
+    <p>Powered by <a href="https://gmgn.ai" target="_blank">GMGN.ai</a> | <a href="#" id="footerBot">联系我们</a></p>
+</footer>
+
+</div>
+
+<script src="config.js"></script>
+<script>
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+    const C = CONFIG;
+    
+    // 链标签
+    document.getElementById('chains').innerHTML = C.chains.map(c => 
+        `<span class="chain-tag">${c}</span>`
+    ).join('');
+    
+    // CTA 链接
+    if (C.referralCode !== 'YOUR_CODE_HERE') {
+        document.getElementById('ctaJoin').href = C.referralLink;
+        document.getElementById('ctaWeb').href = C.websiteLink;
+        document.getElementById('footerBot').href = `https://t.me/${C.botUsername}`;
+    }
+    
+    // 返佣比例显示
+    document.querySelector('.stat-card .num').textContent = C.rebate.userRate.toFixed(0) + '%';
+    
+    // 计算器
+    const vol = document.getElementById('calcVolume');
+    const fee = document.getElementById('calcFee');
+    const result = document.getElementById('calcResult');
+    
+    function updateCalc() {
+        const volume = Number(vol.value) || 0;
+        const feeRate = Number(fee.value);
+        const tradingFee = volume * feeRate;
+        const userRate = C.rebate.userRate / 100;
+        const rebate = tradingFee * userRate;
+        result.innerHTML = `
+            <div class="amount">$${rebate.toFixed(2)}</div>
+            <div class="desc">每周预计返佣（交易手续费 $${tradingFee.toFixed(2)} × ${C.rebate.userRate.toFixed(0)}%）</div>
+        `;
+    }
+    
+    vol.addEventListener('input', updateCalc);
+    fee.addEventListener('change', updateCalc);
+    updateCalc();
+    
+    // 排行榜（从 JSON 加载）
+    fetch('leaderboard.json?t=' + Date.now())
+        .then(r => r.json())
+        .then(data => {
+            if (!data || data.length === 0) return;
+            const html = data.map((u, i) => {
+                const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+                return `<tr>
+                    <td><span class="lb-rank ${rankClass}">${i + 1}</span></td>
+                    <td>${u.name}</td>
+                    <td class="lb-amount">$${u.amount.toFixed(2)}</td>
+                </tr>`;
+            }).join('');
+            document.getElementById('lbBody').innerHTML = html;
+        })
+        .catch(() => {});
+});
+</script>
+</body>
+</html>
