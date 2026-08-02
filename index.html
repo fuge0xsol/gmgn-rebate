@@ -249,6 +249,18 @@ body {
     background: var(--card-hover);
     transform: translateY(-2px);
 }
+.btn-telegram {
+    background: linear-gradient(135deg, #2AABEE, #229ED9);
+    color: #fff;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+}
+.btn-telegram:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 20px rgba(42,171,238,0.3);
+    transform: translateY(-2px);
+}
 
 /* Chain pills */
 .chains {
@@ -767,6 +779,10 @@ footer a { color: var(--green); text-decoration: none; }
         <a href="#calc" class="btn btn-secondary">
             计算收益
         </a>
+        <a href="#" id="ctaBot" class="btn btn-telegram" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+            Bot 查返佣
+        </a>
     </div>
     
     <div class="chains" id="chains"></div>
@@ -1006,6 +1022,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 返佣比例
     const userRate = C.rebate.userRate;
     document.getElementById('statRate').textContent = userRate.toFixed(0) + '%';
+
+    // Telegram Bot 链接
+    if (C.botLink) {
+        document.getElementById('ctaBot').href = C.botLink;
+    }
     
     // 计算器
     const vol = document.getElementById('calcVolume');

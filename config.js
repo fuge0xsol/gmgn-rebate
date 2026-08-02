@@ -29,7 +29,10 @@ const CONFIG = {
     settlement: "每周一结算上周（周一00:00 ~ 周日23:59 UTC）",
     
     // Telegram Bot
-    botUsername: "YOUR_BOT_USERNAME",
+    botUsername: "fanyongxyz_bot",
+    get botLink() {
+        return `https://t.me/${this.botUsername}`;
+    },
     
     // 支持的链
     chains: ["Solana", "Ethereum", "BSC", "Base", "Robinhood", "Stable", "Arc", "XLayer", "HyperEVM", "MegaETH", "Monad", "Tron"],
