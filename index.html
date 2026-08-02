@@ -54,6 +54,77 @@ body {
 
 .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
 
+/* ─── Logo ─── */
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px 0;
+    gap: 12px;
+    flex-direction: column;
+}
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.logo-mark {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--green), var(--green2));
+    color: #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+    font-weight: 900;
+    box-shadow: 0 2px 16px rgba(0,255,136,0.3);
+}
+.logo-text {
+    font-size: 1.35em;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+.logo-sub {
+    font-size: 0.7em;
+    color: var(--text-dim);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* ─── Hero Logo Emblem ─── */
+.hero-logo {
+    margin-bottom: 28px;
+}
+.logo-emblem {
+    width: 90px; height: 90px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(0,255,136,0.12), rgba(0,221,170,0.04));
+    border: 1.5px solid rgba(0,255,136,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 0 60px rgba(0,255,136,0.15), inset 0 0 20px rgba(0,255,136,0.05);
+    animation: emblemGlow 3s ease-in-out infinite;
+    position: relative;
+}
+.emblem-icon {
+    font-size: 2.8em;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--green), var(--green2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Inter', sans-serif;
+}
+@keyframes emblemGlow {
+    0%, 100% { box-shadow: 0 0 40px rgba(0,255,136,0.1), inset 0 0 20px rgba(0,255,136,0.03); }
+    50% { box-shadow: 0 0 80px rgba(0,255,136,0.25), inset 0 0 30px rgba(0,255,136,0.08); }
+}
+
 /* ─── Hero ─── */
 .hero {
     min-height: 90vh;
@@ -536,11 +607,25 @@ footer a { color: var(--green); text-decoration: none; }
 <div class="bg-gradient"></div>
 <div class="bg-grid"></div>
 
+<!-- Logo -->
+<div class="logo-wrap">
+    <a href="/" class="logo">
+        <span class="logo-mark">返</span>
+        <span class="logo-text">返佣网</span>
+    </a>
+    <span class="logo-sub">REBATE NETWORK</span>
+</div>
+
 <!-- ═══ Hero ═══ -->
 <div class="hero">
     <div class="hero-badge">
         <span class="dot"></span>
         GMGN 官方返佣合作伙伴
+    </div>
+    <div class="hero-logo">
+        <div class="logo-emblem">
+            <span class="emblem-icon">%</span>
+        </div>
     </div>
     <h1>返<span class="accent">佣</span>网</h1>
     <p class="tagline">节省你的每一笔交易</p>
