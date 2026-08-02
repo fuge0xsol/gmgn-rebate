@@ -2,16 +2,18 @@
  * GMGN 返佣网站配置 — 修改这里即可
  */
 const CONFIG = {
-    // 你的 GMGN 推荐码（获取方式：登录 gmgn.ai → Connect Telegram → 地址栏 ref= 后面的值）
-    referralCode: "YOUR_CODE_HERE",
+    // 你的 GMGN 推荐链接（直接用原始链接）
+    referralCode: "FpX9SIsb",
     
-    // 推荐链接（自动拼接，改 referralCode 即可）
-    // 综合链接（推荐，网站+Bot 都绑定）
+    // 推荐链接
     get referralLink() {
-        return `https://t.me/gmgnaibot?start=i_${this.referralCode}`;
+        return `https://gmgn.ai/r/FpX9SIsb`;
     },
     get websiteLink() {
-        return `https://gmgn.ai/?ref=${this.referralCode}`;
+        return `https://gmgn.ai/r/FpX9SIsb`;
+    },
+    get botLink() {
+        return `https://t.me/gmgnaibot?start=i_FpX9SIsb`;
     },
     
     // 返佣规则
