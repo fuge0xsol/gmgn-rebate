@@ -32,7 +32,7 @@ const CONFIG = {
     botUsername: "YOUR_BOT_USERNAME",
     
     // 支持的链
-    chains: ["Solana", "Ethereum", "BSC", "Base", "Tron", "Blast"],
+    chains: ["Solana", "Ethereum", "BSC", "Base", "Robinhood", "Stable", "Arc", "XLayer", "HyperEVM", "MegaETH", "Monad", "Tron"],
 
     // 合作返佣平台（各平台真实品牌配色 + Logo）
     platforms: [
