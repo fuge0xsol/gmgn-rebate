@@ -761,7 +761,7 @@ footer a { color: var(--green); text-decoration: none; }
     <p class="tagline">每笔交易手续费自动返还，<strong>每周结算，零门槛</strong></p>
     
     <div class="cta-group">
-        <a href="https://gmgn.ai/r/FpX9SIsb" id="ctaJoin" class="btn btn-primary" target="_blank">
+        <a href="#platforms" id="ctaJoin" class="btn btn-primary">
             立即加入 →
         </a>
         <a href="#calc" class="btn btn-secondary">
@@ -840,12 +840,12 @@ footer a { color: var(--green); text-decoration: none; }
         <div class="step-card reveal">
             <div class="step-icon">01</div>
             <h3>点击加入</h3>
-            <p>跳转 GMGN，自动绑定推荐码</p>
+            <p>选择平台，通过返佣链接注册</p>
         </div>
         <div class="step-card reveal">
             <div class="step-icon">02</div>
             <h3>正常交易</h3>
-            <p>在 GMGN 网站或 Bot 上交易</p>
+            <p>在合作平台上正常交易即可</p>
         </div>
         <div class="step-card reveal">
             <div class="step-icon">03</div>
@@ -921,7 +921,7 @@ footer a { color: var(--green); text-decoration: none; }
     <div class="faq-list">
         <details class="faq-item reveal">
             <summary>返佣从哪里来？</summary>
-            <p>GMGN 平台从每笔交易手续费中提取佣金给推荐人（最高 30%）。我们将其中大部分直接返还给你，自己只留少量运营成本。</p>
+            <p>合作平台从每笔交易手续费中提取佣金给推荐人（最高 30%）。我们将其中大部分直接返还给你，自己只留少量运营成本。</p>
         </details>
         <details class="faq-item reveal">
             <summary>我怎么确认返佣金额？</summary>
@@ -932,8 +932,8 @@ footer a { color: var(--green); text-decoration: none; }
             <p>支持 SOL、USDC、USDT。在 Bot 中用 /settoken 命令设置你偏好的收款代币。</p>
         </details>
         <details class="faq-item reveal">
-            <summary>如果还没有 GMGN 账号？</summary>
-            <p>点击"立即加入"按钮，通过推荐链接注册。注册后你的每笔交易自动绑定返佣，无需额外操作。</p>
+            <summary>如果还没有账号？</summary>
+            <p>点击"立即加入"按钮，选择你想使用的平台，通过返佣链接注册。注册后你的每笔交易自动绑定返佣，无需额外操作。</p>
         </details>
         <details class="faq-item reveal">
             <summary>返佣有最低门槛吗？</summary>
@@ -941,7 +941,7 @@ footer a { color: var(--green); text-decoration: none; }
         </details>
         <details class="faq-item reveal">
             <summary>会影响我的交易体验吗？</summary>
-            <p>完全不会。返佣是在后台自动计算的，你的交易速度、费率、体验跟正常使用 GMGN 完全一样。</p>
+            <p>完全不会。返佣是在后台自动计算的，你的交易速度、费率、体验跟正常使用完全一样。</p>
         </details>
     </div>
 </section>
@@ -952,7 +952,7 @@ footer a { color: var(--green); text-decoration: none; }
 <div class="final-cta reveal">
     <h2>还在等什么？<br><span class="accent">每笔交易都在省钱</span></h2>
     <p>加入返佣网，让你的交易费不再是纯支出</p>
-    <a href="https://gmgn.ai/r/FpX9SIsb" id="ctaFinal" class="btn btn-primary" target="_blank" style="font-size:1.15em;padding:18px 48px">
+    <a href="#platforms" id="ctaFinal" class="btn btn-primary" style="font-size:1.15em;padding:18px 48px">
         立即加入 →
     </a>
 </div>
@@ -1001,13 +1001,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a class="platform-cta ${ctaClass}" ${ctaAttr}>${ctaText}</a>
             </div>`;
         }).join('');
-    }
-    
-    // CTA 链接
-    if (C.referralCode !== 'YOUR_CODE_HERE') {
-        const link = C.referralLink;
-        document.getElementById('ctaJoin').href = link;
-        document.getElementById('ctaFinal').href = link;
     }
     
     // 返佣比例
