@@ -34,7 +34,7 @@ const CONFIG = {
     // 支持的链
     chains: ["Solana", "Ethereum", "BSC", "Base", "Tron", "Blast"],
 
-    // 合作返佣平台（各平台真实品牌配色）
+    // 合作返佣平台（各平台真实品牌配色 + Logo）
     platforms: [
         {
             name: "GMGN",
@@ -45,7 +45,7 @@ const CONFIG = {
             link: "https://gmgn.ai/r/FpX9SIsb",
             color: "#00FF88",
             color2: "#00DDAA",
-            icon: "G",
+            logo: "assets/logos/gmgn.png",
             active: true
         },
         {
@@ -57,7 +57,7 @@ const CONFIG = {
             link: "https://debot.ai?inviteCode=FpX9SIsb",
             color: "#38BDF8",
             color2: "#0EA5E9",
-            icon: "D",
+            logo: "assets/logos/debot.png",
             active: true
         },
         {
@@ -69,7 +69,7 @@ const CONFIG = {
             link: "https://ave.ai?ref=FpX9SIsb",
             color: "#12B886",
             color2: "#3F80F7",
-            icon: "A",
+            logo: "assets/logos/ave.svg",
             active: true
         },
         {
@@ -81,7 +81,7 @@ const CONFIG = {
             link: "#",
             color: "#AD76FF",
             color2: "#8B5CF6",
-            icon: "X",
+            logo: "assets/logos/xxyy.png",
             active: false
         }
     ],

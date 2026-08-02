@@ -654,12 +654,15 @@ footer a { color: var(--green); text-decoration: none; }
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4em;
-    font-weight: 900;
-    color: #000;
-    background: linear-gradient(135deg, var(--card-accent, var(--green)), var(--card-accent2, var(--green)));
     flex-shrink: 0;
+    background: #fff;
     box-shadow: 0 2px 12px var(--card-glow, rgba(0,255,136,0.2));
+    overflow: hidden;
+}
+.platform-icon img {
+    width: 34px; height: 34px;
+    object-fit: contain;
+    border-radius: 4px;
 }
 .platform-name {
     font-size: 1.25em;
@@ -988,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const glow = `rgba(${r},${g},${b},0.15)`;
             return `<div class="platform-card" style="--card-accent:${p.color};--card-accent2:${p.color2};--card-glow:${glow}">
                 <div class="platform-header">
-                    <div class="platform-icon">${p.icon}</div>
+                    <div class="platform-icon"><img src="${p.logo}" alt="${p.name}" loading="lazy"></div>
                     <div>
                         <div class="platform-name">${p.name}</div>
                         <div class="platform-tag">${p.tag}</div>
