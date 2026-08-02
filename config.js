@@ -1,8 +1,8 @@
 /**
- * GMGN 返佣网站配置 — 修改这里即可
+ * 返佣网配置 — 修改这里即可
  */
 const CONFIG = {
-    // 你的 GMGN 推荐链接（直接用原始链接）
+    // GMGN 推荐码
     referralCode: "FpX9SIsb",
     
     // 推荐链接
@@ -18,9 +18,9 @@ const CONFIG = {
     
     // 返佣规则
     rebate: {
-        gmgnMaxRate: 0.30,      // GMGN 给你的最高返佣比例 30%
-        yourKeepRate: 0.10,      // 你自己留存 10%
-        get userRate() {          // 自动计算给用户的返佣
+        gmgnMaxRate: 0.30,
+        yourKeepRate: 0.10,
+        get userRate() {
             return (CONFIG.rebate.gmgnMaxRate - CONFIG.rebate.yourKeepRate) * 100;
         }
     },
@@ -34,49 +34,53 @@ const CONFIG = {
     // 支持的链
     chains: ["Solana", "Ethereum", "BSC", "Base", "Tron", "Blast"],
 
-    // 合作返佣平台（在此修改链接即可）
+    // 合作返佣平台（各平台真实品牌配色）
     platforms: [
         {
             name: "GMGN",
-            tag: "Memecoin 交易终端",
-            desc: "Solana / Ethereum 链上一站式交易，Smart Money 追踪，Pump 狙击",
+            tag: "Smart Money 交易终端",
+            desc: "链上一站式交易，Smart Money 追踪，Pump 狙击，Holders 分析",
             chains: "SOL · ETH · BSC · Base",
             rebate: "最高 20%",
             link: "https://gmgn.ai/r/FpX9SIsb",
             color: "#00FF88",
+            color2: "#00DDAA",
             icon: "G",
             active: true
         },
         {
             name: "Debot",
-            tag: "全链交易 Bot",
-            desc: "Telegram Bot 即时交易，限价单、止盈止损、跟单系统",
+            tag: "Telegram 全链交易 Bot",
+            desc: "Telegram Bot 即时交易，限价单、止盈止损、跟单系统，MEV 防护",
             chains: "SOL · ETH · BSC · Base",
             rebate: "最高 20%",
             link: "https://debot.ai?inviteCode=FpX9SIsb",
-            color: "#5B8DEF",
+            color: "#38BDF8",
+            color2: "#0EA5E9",
             icon: "D",
             active: true
         },
         {
             name: "AVE.ai",
-            tag: "链上行情 + 交易",
-            desc: "实时链上数据，代币深度分析，一键 Swap 交易",
+            tag: "链上数据 + 一键交易",
+            desc: "实时链上行情，代币深度分析，Smart Money 追踪，一键 Swap",
             chains: "SOL · ETH · BSC · Base · Arbitrum",
             rebate: "最高 15%",
             link: "https://ave.ai?ref=FpX9SIsb",
-            color: "#F0B90B",
+            color: "#12B886",
+            color2: "#3F80F7",
             icon: "A",
             active: true
         },
         {
             name: "XXYY",
-            tag: "新兴交易聚合器",
-            desc: "多链聚合 Swap，最优路径，MEV 防护",
+            tag: "Fast Trading as Lightning",
+            desc: "闪电级交易速度，实时 K 线，限价单，Smart Money 跟单",
             chains: "SOL · ETH · BSC",
             rebate: "最高 15%",
             link: "#",
-            color: "#FF6B6B",
+            color: "#AD76FF",
+            color2: "#8B5CF6",
             icon: "X",
             active: false
         }

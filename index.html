@@ -620,17 +620,28 @@ footer a { color: var(--green); text-decoration: none; }
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; height: 3px;
-    background: var(--card-accent, var(--green));
-    opacity: 0.6;
+    background: linear-gradient(90deg, var(--card-accent, var(--green)), var(--card-accent2, var(--green)));
+    opacity: 0.7;
     transition: opacity 0.3s;
+}
+.platform-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40%; right: -20%;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--card-accent, var(--green)) 0%, transparent 70%);
+    opacity: 0.04;
+    pointer-events: none;
 }
 .platform-card:hover {
     border-color: var(--card-accent, var(--green));
     background: rgba(255,255,255,0.05);
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 24px var(--card-glow, rgba(0,255,136,0.1));
 }
 .platform-card:hover::before { opacity: 1; }
+.platform-card:hover::after { opacity: 0.08; }
 .platform-header {
     display: flex;
     align-items: center;
@@ -638,26 +649,29 @@ footer a { color: var(--green); text-decoration: none; }
     margin-bottom: 14px;
 }
 .platform-icon {
-    width: 44px; height: 44px;
-    border-radius: 12px;
+    width: 48px; height: 48px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-weight: 900;
     color: #000;
-    background: var(--card-accent, var(--green));
+    background: linear-gradient(135deg, var(--card-accent, var(--green)), var(--card-accent2, var(--green)));
     flex-shrink: 0;
+    box-shadow: 0 2px 12px var(--card-glow, rgba(0,255,136,0.2));
 }
 .platform-name {
-    font-size: 1.2em;
+    font-size: 1.25em;
     font-weight: 800;
     color: var(--text);
+    letter-spacing: -0.01em;
 }
 .platform-tag {
-    font-size: 0.72em;
-    color: var(--text-dim);
+    font-size: 0.7em;
+    color: var(--card-accent, var(--text-dim));
     margin-top: 2px;
+    font-weight: 500;
 }
 .platform-desc {
     font-size: 0.82em;
@@ -694,12 +708,14 @@ footer a { color: var(--green); text-decoration: none; }
     transition: all 0.2s;
 }
 .platform-cta.active {
-    background: var(--card-accent, var(--green));
+    background: linear-gradient(135deg, var(--card-accent, var(--green)), var(--card-accent2, var(--green)));
     color: #000;
+    box-shadow: 0 2px 12px var(--card-glow, rgba(0,255,136,0.2));
 }
 .platform-cta.active:hover {
     filter: brightness(1.15);
     transform: scale(1.02);
+    box-shadow: 0 4px 20px var(--card-glow, rgba(0,255,136,0.3));
 }
 .platform-cta.inactive {
     background: rgba(255,255,255,0.06);
@@ -963,8 +979,14 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = C.platforms.map(p => {
             const ctaClass = p.active ? 'active' : 'inactive';
             const ctaText = p.active ? '通过返佣链接注册 →' : '即将上线';
-            const ctaAttr = p.active ? `href="${p.link}" target="_blank"` : '';
-            return `<div class="platform-card" style="--card-accent:${p.color}">
+            const ctaAttr = p.active ? `href="${p.link}" target="_blank" rel="noopener"` : '';
+            // 将 hex 转为 rgba 用于 glow
+            const hex = p.color.replace('#','');
+            const r = parseInt(hex.substr(0,2),16);
+            const g = parseInt(hex.substr(2,2),16);
+            const b = parseInt(hex.substr(4,2),16);
+            const glow = `rgba(${r},${g},${b},0.15)`;
+            return `<div class="platform-card" style="--card-accent:${p.color};--card-accent2:${p.color2};--card-glow:${glow}">
                 <div class="platform-header">
                     <div class="platform-icon">${p.icon}</div>
                     <div>
