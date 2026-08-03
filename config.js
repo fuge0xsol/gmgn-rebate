@@ -68,7 +68,7 @@ const CONFIG = {
             tag: "链上数据 + 一键交易",
             desc: "实时链上行情，代币深度分析，Smart Money 追踪，一键 Swap",
             chains: "SOL · ETH · BSC · Base · Arbitrum",
-            rebate: "最高 15%",
+            rebate: "最高 30%",
             link: "https://share.ave.ai?lang=zh-cn&code=fugesol",
             color: "#12B886",
             color2: "#3F80F7",
