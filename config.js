@@ -56,7 +56,7 @@ const CONFIG = {
             tag: "Telegram 全链交易 Bot",
             desc: "Telegram Bot 即时交易，限价单、止盈止损、跟单系统，MEV 防护",
             chains: "SOL · ETH · BSC · Base",
-            rebate: "最高 20%",
+            rebate: "最高 20% · 自动返",
             link: "https://debot.ai/r/fanyongxyz",
             color: "#38BDF8",
             color2: "#0EA5E9",
