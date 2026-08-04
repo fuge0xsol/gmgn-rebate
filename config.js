@@ -18,7 +18,7 @@ const CONFIG = {
     
     // 返佣规则
     rebate: {
-        gmgnMaxRate: 0.30,
+        gmgnMaxRate: 0.55,
         yourKeepRate: 0.10,
         get userRate() {
             return (CONFIG.rebate.gmgnMaxRate - CONFIG.rebate.yourKeepRate) * 100;
