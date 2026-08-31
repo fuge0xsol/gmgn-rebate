@@ -779,7 +779,7 @@ footer a { color: var(--green); text-decoration: none; }
         <span class="pct">最高</span> 45<span class="pct">%</span> 返佣
     </div>
     <p style="font-size:13px;opacity:.75;margin-top:6px">* 45% 为站内最高（Debot · 自动返）；GMGN 最高 20%，详见下方各平台</p>
-    <p class="tagline">每笔交易手续费自动返还，<strong>每周结算，零门槛</strong></p>
+    <p class="tagline">每笔交易手续费自动返还，<strong>每周结算</strong>；不满 $10 自动滚存，无参与门槛</p>
     
     <div style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 20px;border:1px solid rgba(255,203,103,.4);border-radius:999px;background:rgba(255,203,103,.08);font-size:14px;color:#ffcb67;font-weight:700">
         🚧 服务还未正式上线，敬请期待
@@ -838,6 +838,10 @@ footer a { color: var(--green); text-decoration: none; }
     <div class="calc-card reveal">
         <div class="calc-grid">
             <div class="calc-field">
+                <label>返佣平台</label>
+                <select id="calcPlatform"></select>
+            </div>
+            <div class="calc-field">
                 <label>周交易量 ($)</label>
                 <input type="number" id="calcVolume" value="10000" min="0" step="500">
             </div>
@@ -852,9 +856,9 @@ footer a { color: var(--green); text-decoration: none; }
         </div>
         <div class="calc-output" id="calcResult">
             <div class="label">每周预计返佣</div>
-            <div class="amount">$10.00</div>
+            <div class="amount">$20.00</div>
             <div class="breakdown">
-                交易费 <span>$100.00</span> × 返佣率 <span>45%</span> = <span>$10.00</span>
+                交易费 <span>$100.00</span> × 返佣率 <span>20%</span> = <span>$20.00</span>
             </div>
         </div>
     </div>
@@ -950,7 +954,7 @@ footer a { color: var(--green); text-decoration: none; }
     <div class="faq-list">
         <details class="faq-item reveal">
             <summary>返佣从哪里来？</summary>
-            <p>合作平台从每笔交易手续费中提取佣金给推荐人（最高 30%）。我们将其中大部分直接返还给你，自己只留少量运营成本。</p>
+            <p>合作平台从每笔交易手续费中提取佣金给推荐人，比例因平台而异：GMGN 最高 20%、AVE.ai 最高 30%、Debot 最高 45%（自动返）。我们将其中的绝大部分直接返还给你，只留少量运营成本。</p>
         </details>
         <details class="faq-item reveal">
             <summary>我怎么确认返佣金额？</summary>
@@ -1032,35 +1036,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
     }
     
-    // 返佣比例
-    const userRate = C.rebate.userRate;
-    document.getElementById('statRate').textContent = userRate.toFixed(0) + '%';
+    // 站内最高返佣（自动取已上线平台最大费率）
+    document.getElementById('statRate').textContent = (C.maxRate * 100).toFixed(0) + '%';
 
     // Telegram Bot 链接
     if (C.botLink) {
         document.getElementById('ctaBot').href = C.botLink;
     }
     
-    // 计算器
+    // 计算器（按所选平台的真实返佣率计算）
     const vol = document.getElementById('calcVolume');
     const fee = document.getElementById('calcFee');
+    const plat = document.getElementById('calcPlatform');
     const result = document.getElementById('calcResult');
-    
+
+    // 平台下拉：仅已上线平台，默认第一个（GMGN 20%，保守口径）
+    plat.innerHTML = C.platforms.filter(p => p.active)
+        .map(p => `<option value="${p.name}">${p.name} — ${p.rebate}</option>`)
+        .join('');
+
+    function currentRate() {
+        const p = C.platforms.find(x => x.name === plat.value);
+        return (p ? p.rebateRate : 0) * 100;
+    }
+
     function updateCalc() {
         const volume = Number(vol.value) || 0;
         const feeRate = Number(fee.value);
+        const rate = currentRate();
         const tradingFee = volume * feeRate;
-        const rebate = tradingFee * (userRate / 100);
+        const rebate = tradingFee * (rate / 100);
         result.innerHTML = `
             <div class="label">每周预计返佣</div>
             <div class="amount">$${rebate.toFixed(2)}</div>
             <div class="breakdown">
-                交易费 <span>$${tradingFee.toFixed(2)}</span> × 返佣率 <span>${userRate.toFixed(0)}%</span> = <span style="color:var(--green)">$${rebate.toFixed(2)}</span>
+                交易费 <span>$${tradingFee.toFixed(2)}</span> × 返佣率 <span>${rate.toFixed(0)}%</span> = <span style="color:var(--green)">$${rebate.toFixed(2)}</span>
             </div>
         `;
     }
     vol.addEventListener('input', updateCalc);
     fee.addEventListener('change', updateCalc);
+    plat.addEventListener('change', updateCalc);
     updateCalc();
     
     // 排行榜
