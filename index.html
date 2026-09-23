@@ -778,7 +778,7 @@ footer a { color: var(--green); text-decoration: none; }
     <div class="rebate-highlight">
         <span class="pct">最高</span> 45<span class="pct">%</span> 返佣
     </div>
-    <p style="font-size:13px;opacity:.75;margin-top:6px">* 45% 为站内最高（Debot · 自动返）；GMGN 最高 20%，详见下方各平台</p>
+    <p style="font-size:13px;opacity:.75;margin-top:6px">* 45% 为站内最高（Debot · 自动返）；GMGN 最高 15%，详见下方各平台</p>
     <p class="tagline">每笔交易手续费自动返还，<strong>每周结算</strong>；不满 $10 自动滚存，无参与门槛</p>
     
     <div style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 20px;border:1px solid rgba(255,203,103,.4);border-radius:999px;background:rgba(255,203,103,.08);font-size:14px;color:#ffcb67;font-weight:700">
@@ -858,7 +858,7 @@ footer a { color: var(--green); text-decoration: none; }
             <div class="label">每周预计返佣</div>
             <div class="amount">$20.00</div>
             <div class="breakdown">
-                交易费 <span>$100.00</span> × 返佣率 <span>20%</span> = <span>$20.00</span>
+                交易费 <span>$100.00</span> × 返佣率 <span>15%</span> = <span>$15.00</span>
             </div>
         </div>
     </div>
@@ -954,7 +954,7 @@ footer a { color: var(--green); text-decoration: none; }
     <div class="faq-list">
         <details class="faq-item reveal">
             <summary>返佣从哪里来？</summary>
-            <p>合作平台从每笔交易手续费中提取佣金给推荐人，比例因平台而异：GMGN 最高 20%、AVE.ai 最高 30%、Debot 最高 45%（自动返）。我们将其中的绝大部分直接返还给你，只留少量运营成本。</p>
+            <p>合作平台从每笔交易手续费中提取佣金给推荐人，比例因平台而异：GMGN 最高 15%、AVE.ai 最高 30%、Debot 最高 45%（自动返）。我们将其中的绝大部分直接返还给你，只留少量运营成本。</p>
         </details>
         <details class="faq-item reveal">
             <summary>我怎么确认返佣金额？</summary>
@@ -1050,7 +1050,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const plat = document.getElementById('calcPlatform');
     const result = document.getElementById('calcResult');
 
-    // 平台下拉：仅已上线平台，默认第一个（GMGN 20%，保守口径）
+    // 平台下拉：仅已上线平台，默认第一个（GMGN 15%，保守口径）
     plat.innerHTML = C.platforms.filter(p => p.active)
         .map(p => `<option value="${p.name}">${p.name} — ${p.rebate}</option>`)
         .join('');
